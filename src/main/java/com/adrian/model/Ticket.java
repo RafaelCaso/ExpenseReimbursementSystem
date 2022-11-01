@@ -2,6 +2,7 @@ package com.adrian.model;
 
 import java.io.Serializable;
 
+// pass Employee as argument to Ticket so whenever a ticket is opened it will use the employee ID of the employee who submitted it
 public class Ticket implements Serializable {
 
 	private static final long serialVersionUID = 1L;

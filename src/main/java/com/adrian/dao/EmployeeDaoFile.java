@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.adrian.exceptions.EmployeeDoesNotExistException;
+import com.adrian.exceptions.EmployeeIDAlreadyExistsException;
 import com.adrian.model.Employee;
-import com.adrian.model.Ticket;
 
 public class EmployeeDaoFile implements EmployeeDao {
 	
@@ -22,8 +22,17 @@ public class EmployeeDaoFile implements EmployeeDao {
 			eList = new ArrayList<>();
 		}
 		
-		eList.add(e);
-		io.writeObject(eList);
+		// this check for existing employee throws a ConcurrentModificationException
+		// functionally it works (it won't add employee if ID is already used and will add to file if employee ID is available but it throws a server error 500)
+		for(Employee employee : eList) {
+			if(employee.getEmployeeID() == e.getEmployeeID()) {
+				throw new EmployeeIDAlreadyExistsException();  
+			} else {
+				eList.add(e);
+				io.writeObject(eList);
+			}
+		}
+		
 		
 	}
 
@@ -37,7 +46,7 @@ public class EmployeeDaoFile implements EmployeeDao {
 	}
 
 	@Override
-	public Employee getEmployeeByID(long id) {
+	public Employee getEmployeeByID(int id) {
 		List<Employee> eList = io.readObject();
 		if(eList == null) {
 			eList = new ArrayList<>();
@@ -52,7 +61,7 @@ public class EmployeeDaoFile implements EmployeeDao {
 	}
 
 	@Override
-	public void deleteEmployee(long id) {
+	public void deleteEmployee(int id) {
 		List<Employee> eList = io.readObject();
 		if(eList == null) {
 			eList = new ArrayList<>();
