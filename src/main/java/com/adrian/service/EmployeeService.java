@@ -15,12 +15,7 @@ public class EmployeeService {
 	}
 	
 	public void registerEmployee(Employee e) {
-		
-		try {
-			employeeDao.getEmployeeByID(e.getEmployeeID());
-		} catch(EmployeeDoesNotExistException ex) {
-			employeeDao.addEmployee(e);
-		}
+		employeeDao.addEmployee(e);
 	}
 	
 	public List<Employee> getAllEmployees(){
@@ -29,10 +24,22 @@ public class EmployeeService {
 	
 	public void deleteEmployee(Employee e) {
 		try {
-			employeeDao.deleteEmployee(e.getEmployeeID());
+			employeeDao.deleteEmployee(e.getId());
 		} catch(EmployeeDoesNotExistException ex) {
 			return;
 		}
 	}
+	
+	public Employee getEmployee(int id, String password) {
+		return employeeDao.loginEmployee(id, password);
+	}
+	
+	public Employee getEmployeeById(int id) {
+		return employeeDao.getEmployeeByID(id);
+	}
+	
+	
+	
+	
 	
 }	

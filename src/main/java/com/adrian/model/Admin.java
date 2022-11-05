@@ -1,13 +1,9 @@
 package com.adrian.model;
 
-import java.io.Serializable;
+public class Admin {
 
-public class Admin implements Serializable {
 	
-
-	private static final long serialVersionUID = 1L;
-	
-	private int adminID;
+	private int id;
 	private String fName;
 	private String lName;
 	private String email;
@@ -16,21 +12,21 @@ public class Admin implements Serializable {
 	public Admin() {
 		
 	}
-	
-	public Admin(int adminID, String fName, String lName, String email, String password) {
-		this.adminID = adminID;
+
+	public Admin(String fName, String lName, String email, String password) {
+		super();
 		this.fName = fName;
 		this.lName = lName;
 		this.email = email;
 		this.password = password;
 	}
 
-	public int getAdminID() {
-		return adminID;
+	public int getId() {
+		return id;
 	}
 
-	public void setAdminID(int adminID) {
-		this.adminID = adminID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getfName() {
@@ -67,8 +63,8 @@ public class Admin implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Admin [adminID=" + adminID + ", fName=" + fName + ", lName=" + lName + ", email=" + email
-				+ ", password=" + password + "]";
+		return "Admin [id=" + id + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", password="
+				+ password + "]";
 	}
 	
 	

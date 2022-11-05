@@ -1,27 +1,26 @@
 package com.adrian.model;
 
-import java.io.Serializable;
 
-// pass Employee as argument to Ticket so whenever a ticket is opened it will use the employee ID of the employee who submitted it
-public class Ticket implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	
+public class Ticket  {
+
+	private int id;
 	private String expenseReport;
 	private double requestedExpenseAmount;
-	private long employeeID;
-//	private String status; will need some kind of functionality to indicate ticket status/acceptance or denial
-//	private boolean closed;
+	private int employeeID;
+	private TicketStatus type;
+
 	
-	public Ticket(String expenseReport, double requestedExpenseAmount, long employeeID) {
+	public Ticket() {
+		super();
+	}
+	
+	public Ticket(String expenseReport, double requestedExpenseAmount, int employeeID, TicketStatus type) {
+		super();
 		this.expenseReport = expenseReport;
 		this.requestedExpenseAmount = requestedExpenseAmount;
 		this.employeeID = employeeID;
-//		TicketStatus ticketSatus = TicketStatus.PENDING;
-	}
-	
-	public Ticket() {
-		
+		this.type = type;
 	}
 
 	public String getExpenseReport() {
@@ -40,23 +39,43 @@ public class Ticket implements Serializable {
 		this.requestedExpenseAmount = requestedExpenseAmount;
 	}
 
-	public long getEmployeeID() {
+	public int getEmployeeID() {
 		return employeeID;
 	}
 
-	public void setEmployeeID(long employeeID) {
+	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public TicketStatus getType() {
+		return type;
+	}
+
+	public void setType(TicketStatus type) {
+		this.type = type;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override
 	public String toString() {
-		return "Ticket [expenseReport=" + expenseReport + ", requestedExpenseAmount=" + requestedExpenseAmount
-				+ ", employeeID=" + employeeID + "]";
+		return "Ticket [id=" + id + ", expenseReport=" + expenseReport + ", requestedExpenseAmount="
+				+ requestedExpenseAmount + ", employeeID=" + employeeID + ", type=" + type + "]";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

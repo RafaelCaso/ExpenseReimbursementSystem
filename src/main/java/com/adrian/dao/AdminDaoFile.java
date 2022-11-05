@@ -44,7 +44,7 @@ public class AdminDaoFile implements AdminDao {
 		}
 		
 		for(Admin a : aList) {
-			if(a.getAdminID() == id) {
+			if(a.getId() == id) {
 				return a;
 			}
 		}
@@ -59,7 +59,7 @@ public class AdminDaoFile implements AdminDao {
 		}
 		
 		for(int i = 0; i < aList.size(); i++) {
-			if(aList.get(i).getAdminID() == id) {
+			if(aList.get(i).getId() == id) {
 				aList.remove(i);
 				return;
 			}
@@ -76,7 +76,7 @@ public class AdminDaoFile implements AdminDao {
 		}
 		
 		for(int i = 0; i < aList.size(); i++) {
-			if(aList.get(i).getAdminID() == a.getAdminID()) {
+			if(aList.get(i).getId() == a.getId()) {
 				aList.remove(i);
 				aList.add(a);
 			}

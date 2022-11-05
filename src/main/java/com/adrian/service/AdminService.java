@@ -16,7 +16,7 @@ public class AdminService {
 	
 	public void registerAdmin(Admin a) {
 		try {
-			adminDao.getAdminByID(a.getAdminID());
+			adminDao.getAdminByID(a.getId());
 		} catch(AdminDoesNotExistException e) {
 			adminDao.addAdmin(a);
 		}
@@ -28,7 +28,7 @@ public class AdminService {
 	
 	public void deleteAdmin(Admin a) {
 		try {
-			adminDao.deleteAdmin(a.getAdminID());
+			adminDao.deleteAdmin(a.getId());
 		} catch(AdminDoesNotExistException e) {
 			e.printStackTrace();
 			return;

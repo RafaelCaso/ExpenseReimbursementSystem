@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.adrian.exceptions.EmployeeDoesNotExistException;
 import com.adrian.exceptions.EmployeeIDAlreadyExistsException;
+import com.adrian.exceptions.IncorrectIDOrPasswordException;
 import com.adrian.model.Employee;
 
 public class EmployeeDaoFile implements EmployeeDao {
@@ -25,7 +26,7 @@ public class EmployeeDaoFile implements EmployeeDao {
 		// this check for existing employee throws a ConcurrentModificationException
 		// functionally it works (it won't add employee if ID is already used and will add to file if employee ID is available but it throws a server error 500)
 		for(Employee employee : eList) {
-			if(employee.getEmployeeID() == e.getEmployeeID()) {
+			if(employee.getId() == e.getId()) {
 				throw new EmployeeIDAlreadyExistsException();  
 			} else {
 				eList.add(e);
@@ -53,7 +54,7 @@ public class EmployeeDaoFile implements EmployeeDao {
 		}
 		
 		for(Employee e : eList) {
-			if(e.getEmployeeID() == id) {
+			if(e.getId() == id) {
 				return e;
 			}
 		}
@@ -68,7 +69,7 @@ public class EmployeeDaoFile implements EmployeeDao {
 		}
 		
 		for(int i = 0; i < eList.size(); i++) {
-			if(eList.get(i).getEmployeeID() == id) {
+			if(eList.get(i).getId() == id) {
 				eList.remove(i);
 				return;
 			}
@@ -85,12 +86,33 @@ public class EmployeeDaoFile implements EmployeeDao {
 		}
 		
 		for(int i = 0; i < eList.size(); i++) {
-			if(eList.get(i).getEmployeeID() == e.getEmployeeID()) {
+			if(eList.get(i).getId() == e.getId()) {
 				eList.remove(i);
 				eList.add(e);
 			}
 		}
 		throw new EmployeeDoesNotExistException();
 	}
+
+	@Override
+	public Employee loginEmployee(int id, String password) {
+		List<Employee> eList = io.readObject();
+		if(eList == null) {
+			eList = new ArrayList<>();
+		}
+		
+		for(int i = 0; i < eList.size(); i++) {
+			System.out.println(eList.get(i).getfName());
+			System.out.println(eList.get(i).getId());
+			System.out.println(eList.get(i).getPassword());
+			if(eList.get(i).getId() == id && eList.get(i).getPassword() == password) {
+				return eList.get(i);
+			}
+		}
+		return null;
+	}
+	
+	
+
 
 }

@@ -1,14 +1,8 @@
 package com.adrian.model;
 
-import java.io.Serializable;
-import java.util.Arrays;
-
-public class Employee implements Serializable {
+public class Employee{
 	
-
-	private static final long serialVersionUID = 1L;
-	
-	private int employeeID;
+	private int id;
 	private String fName;
 	private String lName;
 	private String email;
@@ -17,21 +11,21 @@ public class Employee implements Serializable {
 	public Employee() {
 		
 	}
-	
-	public Employee(int employeeID, String fName, String lName, String email, String password) {
-		this.employeeID = employeeID;
+
+	public Employee(String fName, String lName, String email, String password) {
+		super();
 		this.fName = fName;
 		this.lName = lName;
 		this.email = email;
 		this.password = password;
 	}
 
-	public int getEmployeeID() {
-		return employeeID;
+	public int getId() {
+		return id;
 	}
 
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getfName() {
@@ -66,13 +60,12 @@ public class Employee implements Serializable {
 		this.password = password;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Employee [employeeID=" + employeeID + ", fName=" + fName + ", lName=" + lName + ", email=" + email
-				+ ", password=" + password + "]";
+		return "Employee [id=" + id + ", fName=" + fName + ", lName=" + lName + ", email=" + email + ", password="
+				+ password + "]";
 	}
+	
 	
 	
 
