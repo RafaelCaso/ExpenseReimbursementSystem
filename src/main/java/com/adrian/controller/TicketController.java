@@ -1,5 +1,7 @@
 package com.adrian.controller;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.adrian.model.Ticket;
@@ -28,6 +30,15 @@ public class TicketController {
 	
 	public Handler handleGetAll = (context) -> {
 		List<Ticket> tList = tServ.getAllSubmittedTicket();
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(tList));
+	};
+	
+	public Handler handleGetTicketByEmployeeId = (context) -> {
+		HashMap<String, Integer> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
+		
+		List<Ticket> tList = tServ.getTicketByEmployeeId(body.get("id"));
+		
 		context.status(200);
 		context.result(objectMapper.writeValueAsString(tList));
 	};

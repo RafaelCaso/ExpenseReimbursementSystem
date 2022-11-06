@@ -5,12 +5,14 @@ import com.adrian.controller.EmployeeController;
 import com.adrian.controller.TicketController;
 import com.adrian.dao.AdminDao;
 import com.adrian.dao.AdminDaoFile;
+import com.adrian.dao.AdminDaoJDBC;
 import com.adrian.dao.EmployeeDao;
 import com.adrian.dao.EmployeeDaoFile;
 import com.adrian.dao.EmployeeDaoJDBC;
 import com.adrian.dao.FileIO;
 import com.adrian.dao.TicketDao;
 import com.adrian.dao.TicketDaoFile;
+import com.adrian.dao.TicketDaoJDBC;
 import com.adrian.model.Employee;
 import com.adrian.model.Ticket;
 import com.adrian.service.AdminService;
@@ -24,7 +26,7 @@ public class ERSDriver {
 	public static void main(String[] args) {
 		
 		// Tickets 
-		TicketDao tDao = new TicketDaoFile();
+		TicketDao tDao = new TicketDaoJDBC();
 		TicketService tServ = new TicketService(tDao);
 		TicketController tCon = new TicketController(tServ);
 		
@@ -33,10 +35,10 @@ public class ERSDriver {
 		EmployeeService eServ = new EmployeeService(eDao);
 		EmployeeController eCon = new EmployeeController(eServ);
 		
-		Employee loggedInEmployee;
+	
 		
 		// Admin
-		AdminDao adDao = new AdminDaoFile();
+		AdminDao adDao = new AdminDaoJDBC();
 		AdminService adServ = new AdminService(adDao);
 		AdminController adCon = new AdminController(adServ);
 		
@@ -45,6 +47,7 @@ public class ERSDriver {
 		//Ticket API endpoints
 		app.post("/ticket/register/", tCon.handleRegister);
 		app.get("/ticket/", tCon.handleGetAll);
+		app.get("/ticketbyid", tCon.handleGetTicketByEmployeeId);
 		
 		// Employee API Endpoints
 		app.post("/employee/register/", eCon.handleRegister);
@@ -58,6 +61,7 @@ public class ERSDriver {
 		app.post("/admin/register/", adCon.handleRegisterAdmin);
 		app.get("/admin/", adCon.handleGetAll);
 		app.delete("/admin/delete/", adCon.handleDelete);
+		app.get("/adminbyid", adCon.handleGetAdminById);
 		
 		
 		

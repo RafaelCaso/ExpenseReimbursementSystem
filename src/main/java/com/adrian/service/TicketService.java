@@ -15,17 +15,17 @@ public class TicketService {
 	}
 	
 	public void submitTicket(Ticket t) {
-		try {
-			ticketDao.getTicketByEmployeeID(t.getEmployeeID());
-		} catch(TicketDoesNotExistException e) {
-			ticketDao.addTicket(t);
-		}
+		ticketDao.addTicket(t);	
 	}
 	
 	public List<Ticket> getAllSubmittedTicket() {
 		
 		return ticketDao.getAllTickets();
 		
+	}
+	
+	public List<Ticket>getTicketByEmployeeId(int id) {
+		return ticketDao.getTicketByEmployeeID(id);
 	}
 	
 }

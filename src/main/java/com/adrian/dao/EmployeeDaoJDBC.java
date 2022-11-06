@@ -97,7 +97,16 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 
 	@Override
 	public void deleteEmployee(int id) {
-		// TODO Auto-generated method stub
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			String sql = "DELETE FROM employees WHERE id=" + id;
+			Statement statement = connection.createStatement();
+			statement.execute(sql);
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
 		
 	}
 

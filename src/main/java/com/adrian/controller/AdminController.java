@@ -1,5 +1,7 @@
 package com.adrian.controller;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.adrian.model.Admin;
@@ -39,6 +41,14 @@ public class AdminController {
 		
 		context.status(200);
 		context.result("Admin removed from database");
+	};
+	
+	public Handler handleGetAdminById = (context) -> {
+		HashMap<String, Integer> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
+		Admin a = adServ.getAdminById(body.get("id"));
+		
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(a));
 	};
 	
 }

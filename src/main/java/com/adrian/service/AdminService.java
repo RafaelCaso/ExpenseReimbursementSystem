@@ -15,11 +15,7 @@ public class AdminService {
 	}
 	
 	public void registerAdmin(Admin a) {
-		try {
-			adminDao.getAdminByID(a.getId());
-		} catch(AdminDoesNotExistException e) {
 			adminDao.addAdmin(a);
-		}
 	}
 	
 	public List<Admin> getAllAdmins(){
@@ -33,6 +29,10 @@ public class AdminService {
 			e.printStackTrace();
 			return;
 		}
+	}
+	
+	public Admin getAdminById(int id) {
+		return adminDao.getAdminByID(id);
 	}
 
 }

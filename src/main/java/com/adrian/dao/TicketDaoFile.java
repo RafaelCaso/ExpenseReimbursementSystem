@@ -36,14 +36,14 @@ public class TicketDaoFile implements TicketDao {
 	}
 
 	@Override
-	public Ticket getTicketByEmployeeID(long id) {
+	public List<Ticket> getTicketByEmployeeID(int id) {
 		List<Ticket> tList = io.readObject();
 		if(tList == null) {
 			tList = new ArrayList<>();
 		}
 		for(Ticket t: tList) {
 			if(t.getEmployeeID() == id) {
-				return t;
+				return tList;
 			}
 		}
 		
