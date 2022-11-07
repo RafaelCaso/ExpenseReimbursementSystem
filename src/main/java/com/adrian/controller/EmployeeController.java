@@ -66,14 +66,14 @@ public class EmployeeController {
 	public Handler handleLogin = (context) -> {
 		HashMap<String, String> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
 		
-		Employee e = eServ.loginEmployee(body.get("email"), body.get("password"));
+		Employee e = eServ.loginEmployee(body.get("email").toLowerCase(), body.get("password"));
 		
 		if(e == null) {
 			context.status(401);
 			context.result("The email or password you used was incorrect. Please try again.");
 		} else {
 			context.status(200);
-			context.result("Logged in as: " + body.get("email"));
+			context.result("Logged in as: " + e.getEmail());
 		}
 		
 		

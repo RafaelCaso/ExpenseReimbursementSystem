@@ -84,5 +84,51 @@ public class TicketController {
 		context.result("Sorry, that ticket is no longer pending.");	
 		
 	};
+	
+	public Handler handleGetAllApproved = (context) -> {
+		List<Ticket> tList = tServ.getAllApproved();
+		
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(tList));
+		
+	};
+	
+	public Handler handleGetAllDeclined = (context) -> {
+		List<Ticket> tList = tServ.getAllDeclined();
+		
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(tList));
+	};
+	
+	public Handler handleGetAllPendingdById = (context) -> {
+		HashMap<String, Integer> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
+		Integer id = body.get("id");
+		List<Ticket> tList = tServ.getAllPendingById(id);
+		
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(tList));
+		
+	};
+	
+	public Handler handleGetAllApprovedById = (context) -> {
+		HashMap<String, Integer> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
+		Integer id = body.get("id");
+		List<Ticket> tList = tServ.getAllApprovedById(id);
+		
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(tList));
+		
+	};
+	
+	public Handler handleGetAllDeclinedById = (context) -> {
+		HashMap<String, Integer> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
+		Integer id = body.get("id");
+		List<Ticket> tList = tServ.getAllDeclinedById(id);
+		
+		context.status(200);
+		context.result(objectMapper.writeValueAsString(tList));
+	};
+	
+	
 
 }

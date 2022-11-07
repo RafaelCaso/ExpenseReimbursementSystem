@@ -51,6 +51,11 @@ public class ERSDriver {
 		app.get("/ticket/pending", tCon.handleGetAllPending);
 		app.post("/ticket/approve", tCon.handleApproveTicket);
 		app.post("/ticket/decline", tCon.handleDeclineTicket);
+		app.get("/ticket/approved", tCon.handleGetAllApproved);
+		app.get("/ticket/declined", tCon.handleGetAllDeclined);
+		app.get("/ticket/pendingbyid", tCon.handleGetAllPendingdById);
+		app.get("/ticket/approvedbyid", tCon.handleGetAllApprovedById);
+		app.get("/ticket/declinedbyid", tCon.handleGetAllDeclinedById);
 		
 		// Employee API Endpoints
 		app.post("/employee/register/", eCon.handleRegister);

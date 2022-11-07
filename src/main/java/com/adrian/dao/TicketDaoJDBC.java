@@ -158,6 +158,166 @@ public class TicketDaoJDBC implements TicketDao {
 		
 		return tList;
 	}
+	
+	@Override
+	public List<Ticket> getAllApproved() {
+		List<Ticket> tList = new ArrayList<>();
+		
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			
+			String sql = "SELECT * FROM tickets WHERE type=2";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while(result.next()) {
+				Ticket t = new Ticket();
+				
+				t.setId(result.getInt(1));
+				t.setExpenseReport(result.getString(2));
+				t.setRequestedExpenseAmount(result.getDouble(3));
+				t.setEmployeeID(result.getInt(4));
+				t.setType(TicketStatus.APPROVED);
+				
+				tList.add(t);
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return tList;
+	}
+
+	@Override
+	public List<Ticket> getAllDeclined() {
+List<Ticket> tList = new ArrayList<>();
+		
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			
+			String sql = "SELECT * FROM tickets WHERE type=3";
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while(result.next()) {
+				Ticket t = new Ticket();
+				
+				t.setId(result.getInt(1));
+				t.setExpenseReport(result.getString(2));
+				t.setRequestedExpenseAmount(result.getDouble(3));
+				t.setEmployeeID(result.getInt(4));
+				t.setType(TicketStatus.DECLINED);
+				
+				tList.add(t);
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return tList;
+	}
+	
+	@Override
+	public List<Ticket> gettAllPendingById(int id) {
+		List<Ticket> tList = new ArrayList<>();
+		
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			
+			String sql = "SELECT * FROM tickets WHERE type=1 and employeeId=" + id;
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while(result.next()) {
+				Ticket t = new Ticket();
+				
+				t.setId(result.getInt(1));
+				t.setExpenseReport(result.getString(2));
+				t.setRequestedExpenseAmount(result.getDouble(3));
+				t.setEmployeeID(result.getInt(4));
+				t.setType(TicketStatus.PENDING);
+				
+				tList.add(t);
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return tList;
+	}
+	
+	@Override
+	public List<Ticket> gettAllApprovedById(int id) {
+		List<Ticket> tList = new ArrayList<>();
+		
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			
+			String sql = "SELECT * FROM tickets WHERE type=2 and employeeId=" + id;
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while(result.next()) {
+				Ticket t = new Ticket();
+				
+				t.setId(result.getInt(1));
+				t.setExpenseReport(result.getString(2));
+				t.setRequestedExpenseAmount(result.getDouble(3));
+				t.setEmployeeID(result.getInt(4));
+				t.setType(TicketStatus.APPROVED);
+				
+				tList.add(t);
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return tList;
+	}
+
+	@Override
+	public List<Ticket> gettAllDeclinedById(int id) {
+List<Ticket> tList = new ArrayList<>();
+		
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			
+			String sql = "SELECT * FROM tickets WHERE type=3 and employeeId=" + id;
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
+			while(result.next()) {
+				Ticket t = new Ticket();
+				
+				t.setId(result.getInt(1));
+				t.setExpenseReport(result.getString(2));
+				t.setRequestedExpenseAmount(result.getDouble(3));
+				t.setEmployeeID(result.getInt(4));
+				t.setType(TicketStatus.DECLINED);
+				
+				tList.add(t);
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return tList;
+	}
 
 	@Override
 	public void approveTicket(int id) {
@@ -233,5 +393,11 @@ public class TicketDaoJDBC implements TicketDao {
 		
 		return null;
 	}
+
+
+
+	
+
+	
 
 }

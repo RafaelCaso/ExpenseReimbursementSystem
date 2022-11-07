@@ -28,9 +28,6 @@ public class TicketService {
 		return ticketDao.getTicketByEmployeeID(id);
 	}
 	
-	public List<Ticket> getAllPending() {
-		return ticketDao.getAllPending();
-	}
 	
 	public void approveTicket(int id) {
 		ticketDao.approveTicket(id);
@@ -44,4 +41,29 @@ public class TicketService {
 		return ticketDao.getTicketByID(id);
 	}
 	
+	public List<Ticket> getAllPending() {
+		return ticketDao.getAllPending();
+	}
+	
+	public List<Ticket> getAllApproved(){
+		return ticketDao.getAllApproved();
+	}
+	
+	public List<Ticket> getAllDeclined(){
+		return ticketDao.getAllDeclined();
+	}
+	
+	
+	
+	public List<Ticket> getAllPendingById(int id){
+		return ticketDao.gettAllPendingById(id);
+	}
+	
+	public List<Ticket> getAllApprovedById(int id){
+		return ticketDao.gettAllApprovedById(id);
+	}
+	
+	public List<Ticket> getAllDeclinedById(int id){
+		return ticketDao.gettAllDeclinedById(id);
+	}
 }

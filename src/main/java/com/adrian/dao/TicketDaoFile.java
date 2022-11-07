@@ -91,4 +91,34 @@ public class TicketDaoFile implements TicketDao {
 		return null;
 	}
 
+	@Override
+	public List<Ticket> getAllApproved() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ticket> getAllDeclined() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ticket> gettAllApprovedById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ticket> gettAllDeclinedById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ticket> gettAllPendingById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

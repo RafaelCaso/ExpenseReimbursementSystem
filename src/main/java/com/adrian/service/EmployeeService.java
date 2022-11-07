@@ -41,7 +41,11 @@ public class EmployeeService {
 	
 	public Employee loginEmployee(String email, String password) {
 		Employee e = employeeDao.getEmployeeByEmail(email);
-	
+		
+		if(e == null) {
+			return null;
+		}
+		
 		if(e.getPassword().equals(password)) {
 			return e;
 		}

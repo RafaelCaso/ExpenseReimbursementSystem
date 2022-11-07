@@ -25,7 +25,7 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 			String sql = "INSERT INTO employees(fName, lName, email, password) VALUES ('" 
 			+ e.getfName() + "','" 
 			+ e.getlName() + "','" 
-			+ e.getEmail() + "','" 
+			+ e.getEmail().toLowerCase() + "','" 
 			+ e.getPassword() + "')";
 			
 			Statement statement = connection.createStatement();

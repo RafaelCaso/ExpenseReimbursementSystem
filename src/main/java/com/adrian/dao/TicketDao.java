@@ -15,7 +15,11 @@ public interface TicketDao {
 	public void approveTicket(int id);
 	public void declineTicket(int id);
 	public Ticket getTicketByID(int id);
-	
+	public List<Ticket> getAllApproved();
+	public List<Ticket> getAllDeclined();
+	public List<Ticket> gettAllPendingById(int id);
+	public List<Ticket> gettAllApprovedById(int id);
+	public List<Ticket> gettAllDeclinedById(int id);
 	
 	
 }
