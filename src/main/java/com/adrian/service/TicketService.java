@@ -28,4 +28,20 @@ public class TicketService {
 		return ticketDao.getTicketByEmployeeID(id);
 	}
 	
+	public List<Ticket> getAllPending() {
+		return ticketDao.getAllPending();
+	}
+	
+	public void approveTicket(int id) {
+		ticketDao.approveTicket(id);
+	}
+	
+	public void declineTicket(int id) {
+		ticketDao.declineTicket(id);
+	}
+	
+	public Ticket getTicketByID(int id) {
+		return ticketDao.getTicketByID(id);
+	}
+	
 }

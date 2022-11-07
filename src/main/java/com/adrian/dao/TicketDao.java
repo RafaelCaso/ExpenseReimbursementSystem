@@ -11,7 +11,10 @@ public interface TicketDao {
 	public List<Ticket> getTicketByEmployeeID(int id);
 	// public void deleteTicket (Not sure there should be an option to delete tickets)
 	public void updateTicket(Ticket t);
-	
+	public List<Ticket> getAllPending();
+	public void approveTicket(int id);
+	public void declineTicket(int id);
+	public Ticket getTicketByID(int id);
 	
 	
 	

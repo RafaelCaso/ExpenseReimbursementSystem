@@ -22,6 +22,15 @@ public class Ticket  {
 		this.employeeID = employeeID;
 		this.type = type;
 	}
+	
+	
+
+	public Ticket(String expenseReport, double requestedExpenseAmount, int employeeID) {
+		super();
+		this.expenseReport = expenseReport;
+		this.requestedExpenseAmount = requestedExpenseAmount;
+		this.employeeID = employeeID;
+	}
 
 	public String getExpenseReport() {
 		return expenseReport;

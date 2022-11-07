@@ -48,6 +48,9 @@ public class ERSDriver {
 		app.post("/ticket/register/", tCon.handleRegister);
 		app.get("/ticket/", tCon.handleGetAll);
 		app.get("/ticketbyid", tCon.handleGetTicketByEmployeeId);
+		app.get("/ticket/pending", tCon.handleGetAllPending);
+		app.post("/ticket/approve", tCon.handleApproveTicket);
+		app.post("/ticket/decline", tCon.handleDeclineTicket);
 		
 		// Employee API Endpoints
 		app.post("/employee/register/", eCon.handleRegister);
@@ -55,6 +58,7 @@ public class ERSDriver {
 //		app.post("/employee/login", );
 		app.delete("/employee/delete", eCon.handleDelete);
 		app.get("/employeeid", eCon.handleGetEmployeeById);
+		app.post("/employee/login", eCon.handleLogin);
 		
 		
 		// Admin API endpoints

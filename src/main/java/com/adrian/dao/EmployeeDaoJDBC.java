@@ -20,6 +20,8 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 			
 			Connection connection = conUtil.getConnection();
 			
+			//SQL function that accepts arguments
+			
 			String sql = "INSERT INTO employees(fName, lName, email, password) VALUES ('" 
 			+ e.getfName() + "','" 
 			+ e.getlName() + "','" 
@@ -118,8 +120,37 @@ public class EmployeeDaoJDBC implements EmployeeDao {
 
 	@Override
 	public Employee loginEmployee(int id, String password) {
-		// TODO Auto-generated method stub
+		
 		return null;
+	}
+
+	@Override
+	public Employee getEmployeeByEmail(String email) {
+		Employee e = null;
+		
+		try {
+			
+			Connection connection = conUtil.getConnection();
+			
+			String sql = "SELECT * FROM employees WHERE email='" + email + "'";
+			
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(sql);
+			
+			while(result.next()) {
+				e = new Employee();
+				e.setId(result.getInt(1));
+				e.setfName(result.getString(2));
+				e.setlName(result.getString(3));
+				e.setEmail(result.getString(4));
+				e.setPassword(result.getString(5));
+						
+			}
+			
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		}
+		return e;
 	}
 
 }

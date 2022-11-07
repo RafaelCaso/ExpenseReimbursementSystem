@@ -35,7 +35,18 @@ public class EmployeeService {
 	}
 	
 	public Employee getEmployeeById(int id) {
+		// way to handle null results/exceptions
 		return employeeDao.getEmployeeByID(id);
+	}
+	
+	public Employee loginEmployee(String email, String password) {
+		Employee e = employeeDao.getEmployeeByEmail(email);
+	
+		if(e.getPassword().equals(password)) {
+			return e;
+		}
+		
+		return null;
 	}
 	
 	

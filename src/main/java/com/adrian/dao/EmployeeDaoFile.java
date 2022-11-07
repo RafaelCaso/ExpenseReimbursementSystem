@@ -111,6 +111,12 @@ public class EmployeeDaoFile implements EmployeeDao {
 		}
 		return null;
 	}
+
+	@Override
+	public Employee getEmployeeByEmail(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

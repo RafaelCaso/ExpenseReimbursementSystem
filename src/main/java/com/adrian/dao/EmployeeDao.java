@@ -9,6 +9,7 @@ public interface EmployeeDao {
 	public void addEmployee(Employee e);
 	public List<Employee> getAllEmployees();
 	public Employee getEmployeeByID(int id);
+	public Employee getEmployeeByEmail(String email);
 	public void deleteEmployee(int id);
 	public void updateEmployee(Employee e);
 	public Employee loginEmployee(int id, String password);

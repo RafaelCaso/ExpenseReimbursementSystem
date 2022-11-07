@@ -22,10 +22,21 @@ public class EmployeeController {
 	
 	public Handler handleRegister = (context) -> {
 		Employee employee = objectMapper.readValue(context.body(), Employee.class);
+		
+		List<Employee> tList = eServ.getAllEmployees();
+		for(Employee searchEmployee : tList) {
+			if(searchEmployee.getEmail().toLowerCase().equals(employee.getEmail().toLowerCase())) {
+				context.status(400);
+				context.result("That email is not available. Please try again");
+				return;
+			} 
+		}
+		
 		eServ.registerEmployee(employee);
 		
 		context.status(201);
 		context.result(objectMapper.writeValueAsString(employee));
+		
 	};
 	
 	public Handler handleGetAll = (context) -> {
@@ -49,8 +60,21 @@ public class EmployeeController {
 		Employee e = eServ.getEmployeeById(body.get("id"));
 		
 		context.status(200);
-		context.result(objectMapper.writeValueAsString(e));
+		context.result(objectMapper.writeValueAsString(e));			
+	};
+	
+	public Handler handleLogin = (context) -> {
+		HashMap<String, String> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
 		
+		Employee e = eServ.loginEmployee(body.get("email"), body.get("password"));
+		
+		if(e == null) {
+			context.status(401);
+			context.result("The email or password you used was incorrect. Please try again.");
+		} else {
+			context.status(200);
+			context.result("Logged in as: " + body.get("email"));
+		}
 		
 		
 	};
