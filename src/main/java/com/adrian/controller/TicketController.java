@@ -23,10 +23,17 @@ public class TicketController {
 	
 	public Handler handleRegister = (context) -> {
 		Ticket ticket = objectMapper.readValue(context.body(), Ticket.class);
-		tServ.submitTicket(ticket);
 		
-		context.status(201);
-		context.result(objectMapper.writeValueAsString(ticket));		
+		if(tServ.submitTicket(ticket)) {
+			context.status(201);
+			context.result(objectMapper.writeValueAsString(ticket));
+			return;
+		}
+		
+		context.status(400);
+		context.result("Invalid input. Please try again");
+		
+				
 	};
 	
 	public Handler handleGetAll = (context) -> {
@@ -36,6 +43,7 @@ public class TicketController {
 	};
 	
 	public Handler handleGetTicketByEmployeeId = (context) -> {
+		
 		HashMap<String, Integer> body = objectMapper.readValue(context.body(), LinkedHashMap.class);
 		
 		List<Ticket> tList = tServ.getTicketByEmployeeId(body.get("id"));

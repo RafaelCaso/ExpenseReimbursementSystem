@@ -35,7 +35,7 @@ public class ERSDriver {
 		EmployeeService eServ = new EmployeeService(eDao);
 		EmployeeController eCon = new EmployeeController(eServ);
 		
-	
+		
 		
 		// Admin
 		AdminDao adDao = new AdminDaoJDBC();
@@ -49,8 +49,9 @@ public class ERSDriver {
 		app.get("/ticket/", tCon.handleGetAll);
 		app.get("/ticketbyid", tCon.handleGetTicketByEmployeeId);
 		app.get("/ticket/pending", tCon.handleGetAllPending);
-		app.post("/ticket/approve", tCon.handleApproveTicket);
-		app.post("/ticket/decline", tCon.handleDeclineTicket);
+		// change approve and decline to patch
+		app.patch("/ticket/approve", tCon.handleApproveTicket);
+		app.patch("/ticket/decline", tCon.handleDeclineTicket);
 		app.get("/ticket/approved", tCon.handleGetAllApproved);
 		app.get("/ticket/declined", tCon.handleGetAllDeclined);
 		app.get("/ticket/pendingbyid", tCon.handleGetAllPendingdById);
@@ -60,7 +61,6 @@ public class ERSDriver {
 		// Employee API Endpoints
 		app.post("/employee/register/", eCon.handleRegister);
 		app.get("/employee/", eCon.handleGetAll);
-//		app.post("/employee/login", );
 		app.delete("/employee/delete", eCon.handleDelete);
 		app.get("/employeeid", eCon.handleGetEmployeeById);
 		app.post("/employee/login", eCon.handleLogin);

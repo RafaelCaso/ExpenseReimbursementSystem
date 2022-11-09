@@ -14,8 +14,12 @@ public class TicketService {
 		this.ticketDao = ticketDao;
 	}
 	
-	public void submitTicket(Ticket t) {
+	public boolean submitTicket(Ticket t) {
+		if(t.getExpenseReport() == "" || t.getRequestedExpenseAmount() <= 0){
+			return false;
+		}
 		ticketDao.addTicket(t);	
+		return true;
 	}
 	
 	public List<Ticket> getAllSubmittedTicket() {

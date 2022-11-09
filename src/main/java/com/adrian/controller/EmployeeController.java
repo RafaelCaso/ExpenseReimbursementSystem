@@ -35,7 +35,7 @@ public class EmployeeController {
 		eServ.registerEmployee(employee);
 		
 		context.status(201);
-		context.result(objectMapper.writeValueAsString(employee));
+		context.result("Welcome " + employee.getfName() + "! You are now registered in the company's Expense Reimbursement System.");
 		
 	};
 	
@@ -73,7 +73,7 @@ public class EmployeeController {
 			context.result("The email or password you used was incorrect. Please try again.");
 		} else {
 			context.status(200);
-			context.result("Logged in as: " + e.getEmail());
+			context.result("Hello " + e.getfName() + ", you are now logged in");
 		}
 		
 		
